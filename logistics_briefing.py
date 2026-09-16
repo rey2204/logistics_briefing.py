@@ -7,7 +7,6 @@ from datetime import datetime
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 SES_CLIENT = boto3.client("ses", region_name="us-east-2")
 
-# List of target URLs
 # List of target URLs for Global Logistics & Supply Chain
 SOURCES = [
     {"name": "Peterson Institute (PIIE)", "url": "https://www.piie.com"},
@@ -53,7 +52,7 @@ def main():
 
     compiled_context = "\n".join(collected_data)
 
-   prompt = f"""You are a global supply chain and logistics risk analyst. 
+    prompt = f"""You are a global supply chain and logistics risk analyst. 
 Based ONLY on the following source materials, synthesize this week's developments into an Axios-style briefing.
 
 Formatting guidelines:
@@ -65,7 +64,7 @@ Formatting guidelines:
    - Supply Chain Network Design
 4. Minimize generic jargon; focus on actionable routing, capacity, or regulatory impacts.
 5. Provide explicit citations and URLs for every data point.
-6. Return your output as clean, semantic HTML (<p>, <ul>, <li>, <strong>, <h3>).
+6. Return your output as clean, semantic HTML (<p>, <ul>, <li>, <strong>, <h3>). Do not use Markdown backticks.
 
 SOURCE DATA:
 {compiled_context}
@@ -96,7 +95,7 @@ SOURCE DATA:
 
     briefing_html = claude_response["content"][0]["text"]
     date_str = datetime.now().strftime("%B %d, %Y")
-    subject = f"Global Logistics & Trade Briefing — {date_str}")
+    subject = f"Global Logistics & Trade Briefing — {date_str}"
 
     full_email_html = f"""
     <!DOCTYPE html>
@@ -104,7 +103,7 @@ SOURCE DATA:
     <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: auto; padding: 20px;">
         <div style="border-bottom: 2px solid #0052cc; padding-bottom: 8px; margin-bottom: 24px;">
             <h1 style="font-size: 24px; margin: 0; color: #111;">{subject}</h1>
-            <p style="color: #666; font-size: 14px; margin: 4px 0 0;">Weekly Macroeconomic Synthesis</p>
+            <p style="color: #666; font-size: 14px; margin: 4px 0 0;">Weekly Supply Chain Risk Synthesis</p>
         </div>
         {briefing_html}
     </body>
