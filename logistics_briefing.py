@@ -8,32 +8,32 @@ ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 SES_CLIENT = boto3.client("ses", region_name="us-east-2")
 
 # List of target URLs
+# List of target URLs for Global Logistics & Supply Chain
 SOURCES = [
-    {"name": "US Bureau of Economic Analysis (BEA)", "url": "https://www.bea.gov/data"},
-    {"name": "Eurostat", "url": "https://ec.europa.eu/eurostat"},
-    {"name": "IMF World Economic Outlook", "url": "https://www.imf.org/en/Publications/WEO"},
-    {"name": "World Bank Global Economic Prospects", "url": "https://www.worldbank.org/en/publication/global-economic-prospects"},
-    {"name": "Federal Reserve Economic Data (FRED)", "url": "https://fred.stlouisfed.org"},
     {"name": "Peterson Institute (PIIE)", "url": "https://www.piie.com"},
     {"name": "Kiel Institute for the World Economy", "url": "https://www.ifw-kiel.de"},
-    {"name": "UNCTAD", "url": "https://unctad.org"},
-    {"name": "JPMorgan Global Research", "url": "https://www.jpmorgan.com/insights/markets-and-economy/economy"},
-    {"name": "Goldman Sachs Insights", "url": "https://www.goldmansachs.com/what-we-do/research"},
-    {"name": "Bank of America Institute", "url": "https://institute.bankofamerica.com/"},
-    {"name": "Deutsche Bank Research", "url": "https://corporates.db.com/solutions/investment-bank-solutions/Research/"},
-    {"name": "PIMCO Insights", "url": "https://www.pimco.com/us/en/insights"},
-    {"name": "AllianceBernstein", "url": "https://www.alliancebernstein.com/en/category/economics"},
-    {"name": "Allianz Economic Research", "url": "https://www.allianz.com/en/economic_research.html"},
-    {"name": "Wells Fargo Economic Insights", "url": "https://www.wellsfargo.com/cib/insights/economics/"},
-    {"name": "U.S. Bank Economic Insights", "url": "https://www.usbank.com/wealth-management/financial-perspectives/market-and-economic-outlook.html"},
-    {"name": "Moody's Analytics Economic View", "url": "https://www.economy.com"},
-    {"name": "RBC Economics", "url": "https://thoughtleadership.rbc.com/economics/"},
-    {"name": "Deloitte Insights", "url": "https://www2.deloitte.com/us/en/insights/economy.html"},
-    {"name": "The Conference Board", "url": "https://www.conference-board.org/research/economy"},
-    {"name": "FocusEconomics", "url": "https://www.focus-economics.com"},
+    {"name": "UN Trade and Development (UNCTAD)", "url": "https://unctad.org"},
+    {"name": "Observatory of Economic Complexity (OEC)", "url": "https://oec.world"},
+    {"name": "Drewry World Container Index", "url": "https://www.drewry.co.uk"},
+    {"name": "Freightos Weekly Freight Update", "url": "https://www.freightos.com/freight-resources/the-weekly-freightos-freight-rate-update/"},
+    {"name": "Flexport Freight Market Update", "url": "https://www.flexport.com/market-updates/"},
+    {"name": "Xeneta", "url": "https://www.xeneta.com/blog"},
+    {"name": "Alphaliner", "url": "https://www.alphaliner.com"},
+    {"name": "Journal of Commerce (JOC)", "url": "https://www.joc.com"},
+    {"name": "DAT Trendlines (North American Trucking)", "url": "https://www.dat.com/trendlines"},
+    {"name": "FreightWaves", "url": "https://www.freightwaves.com"},
+    {"name": "Cass Freight Index", "url": "https://www.cassinfo.com/freight-audit-payment/cass-transportation-indexes"},
+    {"name": "WorldACD (Air Freight)", "url": "https://www.worldacd.com"},
+    {"name": "TAC Index", "url": "https://tacindex.com"},
+    {"name": "IATA Air Cargo Market Analysis", "url": "https://www.iata.org"},
+    {"name": "Air Cargo News", "url": "https://www.aircargonews.net"},
     {"name": "National Bureau of Economic Research (NBER)", "url": "https://www.nber.org"},
-    {"name": "Trading Economics", "url": "https://tradingeconomics.com"},
-    {"name": "Observatory of Economic Complexity", "url": "https://oec.world"}
+    {"name": "Kearney Reshoring Index", "url": "https://www.kearney.com/service/operations-performance/us-reshoring-index"},
+    {"name": "Reshoring Initiative", "url": "https://reshorenow.org/"},
+    {"name": "S&P Global Market Intelligence", "url": "https://www.spglobal.com/market-intelligence/en/news-insights"},
+    {"name": "ISM Report On Business", "url": "https://www.ismworld.org/supply-management-news-and-reports/reports/"},
+    {"name": "Boston Consulting Group (BCG) Supply Chain", "url": "https://www.bcg.com/capabilities/operations/supply-chain-management"},
+    {"name": "Gartner Supply Chain Practice", "url": "https://www.gartner.com/en/supply-chain"}
 ]
 
 def main():
@@ -96,7 +96,7 @@ SOURCE DATA:
 
     briefing_html = claude_response["content"][0]["text"]
     date_str = datetime.now().strftime("%B %d, %Y")
-    subject = f"Economic Intelligence Briefing — {date_str}"
+    subject = f"Global Logistics & Trade Briefing — {date_str}")
 
     full_email_html = f"""
     <!DOCTYPE html>
