@@ -88,10 +88,10 @@ SOURCE DATA:
         },
         json={
             "model": "claude-sonnet-5",
-            "max_tokens": 4096,
+            "max_tokens": 16000,
             "messages": [{"role": "user", "content": prompt}]
         },
-        timeout=180
+        timeout=300
     )
     
     claude_response = claude_response_raw.json()
