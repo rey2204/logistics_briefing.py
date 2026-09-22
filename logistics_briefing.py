@@ -101,7 +101,12 @@ SOURCE DATA:
         print(f"ANTHROPIC API ERROR: {claude_response['error']}")
         return
 
-    briefing_html = claude_response["content"][0]["text"]
+    # Find the actual text block, ignoring any thinking blocks
+    briefing_html = ""
+    for block in claude_response["content"]:
+        if block["type"] == "text":
+            briefing_html = block["text"]
+            break
     subject = f"Global Logistics & Trade Briefing — {date_str_current}"
 
     full_email_html = f"""
